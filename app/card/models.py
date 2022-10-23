@@ -20,4 +20,4 @@ class Card(models.Model):
     vaccinated = models.CharField(max_length=1, choices=Vaccinated.choices, default=Vaccinated.NO)
 
     class Meta:
-        ordering = ['name', 'last_name', 'middle_name']
+        ordering = ['last_name', 'name', 'middle_name']

@@ -1,6 +1,4 @@
 from django.contrib import admin
-from .models import *
+from .models import Card
 
-admin.site.register(Gender)
-admin.site.register(Vaccination)
 admin.site.register(Card)

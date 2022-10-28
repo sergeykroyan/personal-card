@@ -3,7 +3,6 @@ from django.core.validators import MaxValueValidator, MinValueValidator
 
 
 class Card(models.Model):
-
     class Vaccinated(models.TextChoices):
         YES = "Y", "Yes"
         NO = "N", "No"
@@ -13,9 +12,9 @@ class Card(models.Model):
         FEMALE = "F", "Female"
 
     name = models.CharField(max_length=255)
-    middle_name = models.CharField(max_length=255, null=True, blank=True)
+    middle_name = models.CharField(max_length=255)
     last_name = models.CharField(max_length=255)
-    age = models.PositiveSmallIntegerField(validators=[MinValueValidator(12), MaxValueValidator(122)])
+    age = models.PositiveSmallIntegerField()
     gender = models.CharField(max_length=1, choices=Genders.choices)
     vaccinated = models.CharField(max_length=1, choices=Vaccinated.choices, default=Vaccinated.NO)
 

@@ -9,15 +9,14 @@ class PersonalCardSerializer(ModelSerializer):
         model = Card
         fields = ('id', 'name', 'middle_name', 'last_name',
                   'age', 'gender', 'vaccinated')
+        read_only = ('age', 'vaccinated', 'gender')
 
     def create(self, validated_data):
         try:
-            value = Card.objects.get(name=validated_data['name'], middle_name=validated_data['middle_name'],
-                                     last_name=validated_data['last_name'])
+            return Card.objects.get(**validated_data)
+
         except Card.DoesNotExist:
             return Card.objects.create(**validated_data)
-        else:
-            return value
 
     @staticmethod
     def validate_age(value: int):

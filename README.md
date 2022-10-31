@@ -1,4 +1,4 @@
-![image](/Personal_Card_DRF.png)
+![image](Personal_Card_DRF.png)
 # PERSONAL CARD REST API
 Simple API with Django Rest Framework
 ## Requirements
@@ -22,6 +22,14 @@ pip install -r requirements.txt
 
 ## Launch
 >  How to run a project? 
+
+
+First, you need to run the following command from the project root directory.
+
+```sh
+python manage.py migrate
+```
+> It will create a SQLite database in the project root directory.
 
 To run the server, run the following command at the root of the project.
 ```sh

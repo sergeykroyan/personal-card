@@ -9,14 +9,13 @@ class PersonalCardSerializer(ModelSerializer):
         model = Card
         fields = ('id', 'name', 'middle_name', 'last_name',
                   'age', 'gender', 'vaccinated')
-        read_only = ('age', 'vaccinated', 'gender')
-
-    def create(self, validated_data):
-        try:
-            return Card.objects.get(**validated_data)
-
-        except Card.DoesNotExist:
-            return Card.objects.create(**validated_data)
+        read_only_fields = ('vaccinated', 'gender')
+        validators = [
+            UniqueTogetherValidator(
+                queryset=model.objects.all(),
+                fields=['name', 'last_name']
+            )
+        ]
 
     @staticmethod
     def validate_age(value: int):

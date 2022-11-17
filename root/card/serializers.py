@@ -9,11 +9,10 @@ class PersonalCardSerializer(ModelSerializer):
         model = Card
         fields = ('id', 'name', 'middle_name', 'last_name',
                   'age', 'gender', 'vaccinated')
-        read_only_fields = ('vaccinated', 'gender')
         validators = [
             UniqueTogetherValidator(
                 queryset=model.objects.all(),
-                fields=['name', 'last_name']
+                fields=['name', 'middle_name', 'last_name']
             )
         ]
 

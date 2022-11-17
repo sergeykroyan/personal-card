@@ -37,11 +37,20 @@ class PersonalCardTests(APITestCase):
         response = self.client.post(self.url, self.data)
         self.assertEqual(response.status_code, status.HTTP_200_OK)
 
+        self.data['age'] = 80
+        response = self.client.post(self.url, self.data)
+        self.assertEqual(response.data['age'], 61)
+
     def test_wrong_data_post(self):
         """
         Make sure that will return an error if the data is incorrect.
         """
         self.data['name'] = ' '
+        response = self.client.post(self.url, self.data)
+        self.assertEqual(response.status_code, status.HTTP_400_BAD_REQUEST)
+
+        self.data['name'] = 'Karen'
+        self.data['age'] = -60
         response = self.client.post(self.url, self.data)
         self.assertEqual(response.status_code, status.HTTP_400_BAD_REQUEST)
 
